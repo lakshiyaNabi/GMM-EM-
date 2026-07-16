@@ -1,0 +1,31 @@
+#############################
+# Generate Synthetic Dataset
+#############################
+
+set.seed(200000)
+
+n <- 100000   # number of points per cluster
+
+# Cluster 1 (Mean = 3,4)
+x1_c1 <- rnorm(n, mean = 3, sd = 1)
+x2_c1 <- rnorm(n, mean = 4, sd = 1)
+
+# Cluster 2 (Mean = 9,10)
+x1_c2 <- rnorm(n, mean = 9, sd = 1)
+x2_c2 <- rnorm(n, mean = 10, sd = 1)
+
+# Combine clusters
+data1 <- cbind(x1_c1, x2_c1)
+data2 <- cbind(x1_c2, x2_c2)
+
+data <- rbind(data1, data2)
+colnames(data) <- c("X1", "X2")
+
+# Save dataset as CSV
+write.csv(data, "synthetic_data.csv", row.names = FALSE)
+
+# Show first few rows
+head(data)
+
+# Plot dataset (optional)
+plot(data, col="blue", pch=16, main="Generated Dataset")
